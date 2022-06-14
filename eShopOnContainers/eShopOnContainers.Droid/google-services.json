@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "687583959493",
+    "project_id": "englishhome-kadir",
+    "storage_bucket": "englishhome-kadir.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:687583959493:android:40b72f12b497a0e31513ac",
+        "android_client_info": {
+          "package_name": "com.kadir.englishhome"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "687583959493-qu2rdjt1no825te8cji88f2hqa4826ol.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfN6JkvqQPN2heWenvdMFXJh1qaSqZh_E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "687583959493-qu2rdjt1no825te8cji88f2hqa4826ol.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,164 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase  xmlns:views="clr-namespace:eShopOnContainers.Core.Views" 
+						xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+						xmlns:vm="clr-namespace:eShopOnContainers.Core.ViewModels" xmlns:product="clr-namespace:eShopOnContainers.Core.Models.Product"
+						x:Class="eShopOnContainers.Core.Views.MainPage">
+
+	<ContentPage.BindingContext>
+		<vm:MainPageViewModel/>
+	</ContentPage.BindingContext>
+
+	<ContentPage.ToolbarItems>
+
+		<ToolbarItem IconImageSource="user.png" Order="Primary" Priority="0" 
+                        Command="{Binding NavigateLogin}" />
+		<ToolbarItem IconImageSource="cart.png" Order="Primary" Priority="1" 
+                        Command="{Binding NavigateCart}" />
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.Resources>
+		<DataTemplate x:Key="playerTemplate" x:DataType="product:Product" >
+			<ContentView>
+				<StackLayout>
+				<Image
+                Source="{Binding ImageURL}"
+                HorizontalOptions="Center"
+                VerticalOptions="Start" 
+                HeightRequest="120"
+                Margin="10,0,0,0" />
+
+				<Label
+                Text="{Binding CategoryName}" 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Start"
+                VerticalTextAlignment="Start"
+                TextColor="Black" 
+                Margin="10,0,0,0"
+                FontAttributes="Bold"
+                FontSize="10"/>
+
+				<Label
+                Text="{Binding Name}" 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Start"
+                VerticalTextAlignment="Start"
+                TextColor="Black" 
+                Margin="10,0,0,0"
+                FontSize="10"/>
+					
+				<Label
+                Text="{Binding Cost}" 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Start"
+                VerticalTextAlignment="Start"
+                TextColor="Black" 
+                Margin="10,0,0,0"
+                FontSize="10"/>
+
+				<Button
+                Text="Sepete Ekle" 
+                TextColor="White" 
+                BackgroundColor="#FF295564"
+                HorizontalOptions="Start"
+                VerticalOptions="End"
+                Margin="10,0,0,10"
+                HeightRequest="30"
+                FontSize="8"/>
+
+				</StackLayout>
+				
+
+			</ContentView>
+		</DataTemplate>
+	</ContentPage.Resources>
+	<ContentPage.Content>
+		<ScrollView>
+
+		<StackLayout>
+			<Grid RowSpacing="0">
+				<Grid.RowDefinitions>
+					<RowDefinition Height="10*"></RowDefinition>
+				</Grid.RowDefinitions>
+				<Grid.ColumnDefinitions>
+					<ColumnDefinition Width="*" />
+				</Grid.ColumnDefinitions>
+
+
+				<Image Grid.Row="0" Grid.ColumnSpan="3"
+           Source="https://www.codershome.net/wp-content/uploads/2021/06/laptop-2620118_1920.jpg"
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand" 
+                   HeightRequest="250"
+           Aspect="Fill" />
+
+				<Label Grid.Row="0" Grid.ColumnSpan="3"
+           Text="Yazılımcılara Özel Tasarlanmış Ürünler" 
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand"
+           HorizontalTextAlignment="Center"
+           VerticalTextAlignment="Start"
+           TextColor="White" 
+                   Margin="0,30,0,0"
+           FontSize="30"/>
+
+				<Label Grid.Row="0" Grid.ColumnSpan="3"
+           Text="100 TL ve Üzeri Ücretsiz Kargo Avantajıyla İndirimli Fiyatları Yakala!" 
+           HorizontalTextAlignment="Center"
+           VerticalTextAlignment="Center"
+           TextColor="White" 
+           FontSize="12"/>
+
+				<Button Clicked="Button_Clicked" Grid.Row="0" Grid.ColumnSpan="3"
+           Text="Alışverişe Başla" 
+           TextColor="White" 
+           BackgroundColor="#FF295564"
+           HorizontalOptions="Start"
+           VerticalOptions="End"
+                    Margin="30,30,0,30"
+                    HeightRequest="30"
+           FontSize="8"/>
+
+				<Button Grid.Row="0" Grid.ColumnSpan="3"
+           Text="Daha Fazla Bilgi" 
+           TextColor="White" 
+           BackgroundColor="#FF295564"
+           HorizontalOptions="End"
+           VerticalOptions="End"
+                    Margin="0,30,170,30"
+                    Opacity="0.7"
+                    HeightRequest="30"
+           FontSize="8"/>
+			</Grid>
+			<Label
+                Text="Vitrindekiler" 
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="Center"
+                TextColor="Black" 
+                FontSize="30"/>
+
+			<Label
+                Text="_________" 
+                HorizontalTextAlignment="Center"
+                VerticalTextAlignment="End"
+                TextColor="Black" 
+                Margin="0,0,0,50"
+                FontSize="30"/>
+			<CollectionView x:Name="collectionview"
+			ItemsSource="{Binding Products}"
+             ItemTemplate="{StaticResource playerTemplate}" >
+
+
+				<!--span here decides the number of items shows in one line. Now is 3 items one line-->
+				<CollectionView.ItemsLayout>
+					<GridItemsLayout Orientation="Vertical" Span="3"/>
+				</CollectionView.ItemsLayout>
+
+			</CollectionView>
+		</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</views:ContentPageBase>
