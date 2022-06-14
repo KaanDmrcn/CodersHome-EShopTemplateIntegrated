@@ -16,7 +16,7 @@ namespace eShopOnContainers.Core.Services.PageCategory
         private readonly IRequestProvider _requestProvider;
 
         private const string ApiUrlBase = "categories";
-        public CategoryService(IRequestProvider requestProvider, IFixUriService fixUriService)
+        public CategoryService(IRequestProvider requestProvider)
         {
             _requestProvider = requestProvider;
         }

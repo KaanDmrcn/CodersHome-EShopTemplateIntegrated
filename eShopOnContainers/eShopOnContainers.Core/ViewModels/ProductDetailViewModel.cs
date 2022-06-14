@@ -35,7 +35,7 @@ namespace eShopOnContainers.Core.ViewModels
 
         public async override Task InitializeAsync(IDictionary<string, string> query)
         {
-            int id = query.GetValueAsInt("Product").Value;
+            int id = query.GetValueAsInt("ProductID").Value;
             Product = await _productsService.GetProductWithIDAsync(id);
         }
         public ICommand NavigateLogin => new Command(async () =>
