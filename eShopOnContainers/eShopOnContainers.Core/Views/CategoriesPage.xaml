@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase  xmlns:views="clr-namespace:eShopOnContainers.Core.Views" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:xct="http://xamarin.com/schemas/2020/toolkit" xmlns:vm="clr-namespace:eShopOnContainers.Core.ViewModels"
+						x:Class="eShopOnContainers.Core.Views.CategoriesPage">
+
+
+	<ContentPage.ToolbarItems>
+
+		<ToolbarItem IconImageSource="user.png" Order="Primary" Priority="0" 
+                        Command="{Binding NavigateLogin}" />
+		<ToolbarItem IconImageSource="cart.png" Order="Primary" Priority="1" 
+                        Command="{Binding NavigateCart}" />
+	</ContentPage.ToolbarItems>
+
+	<ContentPage.BindingContext>
+		<vm:CategoriesViewModel/>
+	</ContentPage.BindingContext>
+	<ContentPage.Content>
+		<ListView x:Name="MyListView"
+            HasUnevenRows="True"
+                  ItemsSource="{Binding Categories}">
+
+			<ListView.Behaviors>
+				<xct:EventToCommandBehavior
+                        Command="{Binding NavigateProductsCommand}"
+                        EventArgsConverter="{StaticResource ItemTappedEventArgsConverter}"
+                        EventName="ItemTapped" />
+			</ListView.Behaviors>
+
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<ViewCell>
+						<Grid Padding="7">
+							<Frame>
+								<StackLayout Orientation="Horizontal">
+									<StackLayout VerticalOptions="Center">
+										<Label FontAttributes="Bold" TextColor="MidnightBlue" VerticalOptions="Center" HorizontalOptions="Start"
+                                       FontSize="Medium"
+                                       Text="{Binding Name}"
+                   Style="{DynamicResource ListItemTextStyle}" />
+									</StackLayout>
+								</StackLayout>
+							</Frame>
+						</Grid>
+					</ViewCell>
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</ContentPage.Content>
+</views:ContentPageBase>
