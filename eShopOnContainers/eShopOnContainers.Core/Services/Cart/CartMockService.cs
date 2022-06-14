@@ -32,7 +32,7 @@ namespace eShopOnContainers.Core.Services.Cart
             return cartItems;
         }
 
-        public void PostCarts(ObservableCollection<CartItem> carts)
+        public void SaveCarts(ObservableCollection<CartItem> carts)
         {
             foreach(CartItem cart in carts)
             {
