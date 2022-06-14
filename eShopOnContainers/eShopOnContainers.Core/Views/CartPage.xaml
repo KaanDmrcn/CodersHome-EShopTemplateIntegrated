@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <views:ContentPageBase  xmlns:views="clr-namespace:eShopOnContainers.Core.Views" xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:xtc="http://xamarin.com/schemas/2020/toolkit" xmlns:vm="clr-namespace:eShopOnContainers.Core.ViewModels"
+						x:Name="ThisCartPage"
 						x:Class="eShopOnContainers.Core.Views.CartPage">
 
 	<ContentPage.BindingContext>
@@ -23,7 +24,7 @@
 						<RowDefinition Height="Auto"/>
 					</Grid.RowDefinitions>
 
-					<ListView x:Name="MyListView" Grid.Row="0"	HeightRequest="320"
+					<ListView x:Name="MyListView" Grid.Row="0"	HeightRequest="550"
             ItemsSource="{Binding Cart}"
             HasUnevenRows="True">
 
@@ -37,14 +38,12 @@
 							<DataTemplate>
 								<ViewCell>
 									<Grid>
-										<Button Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Text="X" TextColor="Gray" BackgroundColor="WhiteSmoke"></Button>
+										<Button Grid.Row="0" Grid.Column="1" HorizontalOptions="End" Text="X" TextColor="Gray" BackgroundColor="WhiteSmoke"  Command="{Binding Source={x:Reference ThisCartPage}, Path=BindingContext.RemoveFromCart}" CommandParameter="{Binding CartItemID}" ></Button>
 										<Label Grid.Row="1" Grid.Column="0" Margin="20,0,0,0" HorizontalOptions="Start" VerticalOptions="Center"  Text="Ürün:" FontAttributes="Bold" TextColor="Black"></Label>
 										<Label Grid.Row="2" Grid.Column="0" Margin="20,0,0,0" HorizontalOptions="Start" VerticalOptions="Center"  Text="Fiyat:" FontAttributes="Bold" TextColor="Black"></Label>
-										<Label Grid.Row="3" Grid.Column="0" Margin="20,0,0,0" HorizontalOptions="Start" VerticalOptions="Center"  Text="Miktar:" FontAttributes="Bold" TextColor="Black"></Label>
-										<Label Grid.Row="4" Grid.Column="0" Margin="20,0,0,0" HorizontalOptions="Start" VerticalOptions="Center"  Text="Ara Toplam:" FontAttributes="Bold" TextColor="Black"></Label>
 
-										<Label Grid.Row="1" Grid.Column="1" Margin="0,0,20,0" HorizontalOptions="End" VerticalOptions="Center"  Text="Android Studio Temalı Kupa" FontAttributes="Bold" TextColor="Black"></Label>
-										<Label Grid.Row="2" Grid.Column="1" Margin="0,0,20,0" HorizontalOptions="End" VerticalOptions="Center"  Text="42.95₺" FontAttributes="Bold" TextColor="Black"></Label>
+										<Label Grid.Row="1" Grid.Column="1" Margin="0,0,20,0" HorizontalOptions="End" VerticalOptions="Center"  Text="{Binding ProductName}" FontAttributes="Bold" TextColor="Black"></Label>
+										<Label Grid.Row="2" Grid.Column="1" Margin="0,0,20,0" HorizontalOptions="End" VerticalOptions="Center"  Text="{Binding Price}" FontAttributes="Bold" TextColor="Black"></Label>
 										<Label Grid.Row="5" Grid.ColumnSpan="2" Margin="10,0,0,0"  Text="_________________________________________________________________________" VerticalOptions="Start" HorizontalOptions="Start" FontSize="12" TextColor="Gray" />
 									</Grid>
 								</ViewCell>
@@ -53,43 +52,19 @@
 					</ListView>
 				</Grid>
 				
-				<Grid>
-				<Entry Margin="20,0,0,0" Grid.Row="0" Grid.Column="0" Placeholder="Kupon Kodu"></Entry>
-				<Button Grid.Row="0" Grid.Column="1"
-                Text="Kupon Kullan" 
-                TextColor="White" 
-                BackgroundColor="#FF295564"
-                HorizontalOptions="Start"
-                VerticalOptions="Center"
-                Margin="0,0,0,0"
-                HeightRequest="30"
-                FontSize="8"/>
 
-				<Button Grid.Row="0" Grid.Column="2"
-                Text="Sepeti Güncelle" 
-                TextColor="White" 
-                BackgroundColor="#FF295564"
-                HorizontalOptions="Center"
-                VerticalOptions="Center"
-                Margin="0,0,0,0"
-                HeightRequest="30"
-                FontSize="8" Opacity="0.4"/>
-				<Label Grid.Row="1" Grid.ColumnSpan="3" Margin="10,0,0,0"  Text="_________________________________________________________________________" VerticalOptions="Start" HorizontalOptions="Start" FontSize="12" TextColor="Gray" />
-				</Grid>
-
-				<Grid>
-					<Label Grid.Row="0" Grid.Column="0" Margin="20,0,0,0" HorizontalOptions="Start" VerticalOptions="Center"  Text="Sepet toplamları"  TextColor="Black"></Label>
-					<Label Grid.Row="1" Grid.Column="0" Margin="20,0,0,0" HorizontalOptions="Start" VerticalOptions="Center"  Text="Ara Toplam:" FontAttributes="Bold" TextColor="Black"></Label>
-					<Label Grid.Row="2" Grid.Column="0" Margin="20,0,0,0" HorizontalOptions="Start" VerticalOptions="Center"  Text="Gönderim:" FontAttributes="Bold" TextColor="Black"></Label>
-					<Label Grid.Row="3" Grid.Column="0" Margin="20,0,0,0" HorizontalOptions="Start" VerticalOptions="Center"  Text="Toplam:" FontAttributes="Bold" TextColor="Black"></Label>
-					<Label Grid.Row="1" Grid.Column="1" Margin="0,0,20,0" HorizontalOptions="End" VerticalOptions="Center"  Text="42.95₺" FontAttributes="Bold" TextColor="Black"></Label>
-					<Label Grid.Row="2" Grid.Column="1" Margin="0,0,20,0" HorizontalOptions="End" VerticalOptions="Center"  Text="Ödeme sırasında hesaplanır." TextColor="Black"></Label>
-					<Label Grid.Row="3" Grid.Column="1" Margin="0,0,20,0" HorizontalOptions="End" VerticalOptions="Center"  Text="42.95₺" FontAttributes="Bold" TextColor="Black"></Label>
-					<Label Grid.Row="4" Grid.ColumnSpan="2" Margin="10,0,0,0"  Text="_________________________________________________________________________" VerticalOptions="Start" HorizontalOptions="Start" FontSize="12" TextColor="Gray" />
-				</Grid>
 				<Grid>
 
 					<Button Grid.Row="0" Grid.Column="0"
+                Text="Sepeti Temizle" 
+                TextColor="White" 
+                BackgroundColor="#FF295564"
+                HorizontalOptions="Fill"
+                VerticalOptions="Center"
+                Margin="10,0,10,0"
+                HeightRequest="40"
+                FontSize="8"/>
+					<Button Grid.Row="0" Grid.Column="1"
                 Text="Ödeme sayfasına git" 
                 TextColor="White" 
                 BackgroundColor="#FF295564"
@@ -100,36 +75,6 @@
                 FontSize="8"/>
 				</Grid>
 
-				<Grid>
-					<Label Grid.Row="0" Grid.ColumnSpan="3"
-                BackgroundColor="#082629"
-                Text="Bizi Takip Etmeyi Unutmayın!"   
-                       FontAttributes="Bold"
-                       TextColor="White"
-                HorizontalTextAlignment="Start"
-                VerticalTextAlignment="Center" 
-                       Padding="15,0,0,0"
-                Margin="0,0,0,0"/>
-
-
-					<Image Grid.Row="0" Grid.Column="1"
-           Source="https://www.codershome.net/wp-content/uploads/2021/06/instagram_icon.png"  
-                      HorizontalOptions="End"
-                VerticalOptions="Center"
-                       Margin="0,0,0,0"/>
-
-					<Image Grid.Row="0" Grid.Column="2"
-           Source="https://www.codershome.net/wp-content/uploads/2021/06/facebook_icon.png"  
-                      HorizontalOptions="Start"
-                VerticalOptions="Center"
-                       Margin="0,0,0,0"/>
-
-					<Image Grid.Row="0" Grid.Column="2"
-           Source="https://www.codershome.net/wp-content/uploads/2021/06/linkedin_con.png"  
-                      HorizontalOptions="Center"
-                VerticalOptions="Center"
-                       Margin="0,0,0,0"/>
-				</Grid>
 			</StackLayout>
 		</ScrollView>
 	</ContentPage.Content>

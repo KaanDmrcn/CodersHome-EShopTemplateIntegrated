@@ -13,12 +13,11 @@ namespace eShopOnContainers.Core.Services.Cart
 {
     public class CartService:ICartService
     {
-        private string CartKey = "UserCart";
-        public ObservableCollection<CartItem> GetCarts()
+        private string CartKey = "Cart";
+        public ObservableCollection<CartItem> GetCartItems()
         {
             var cartD = Preferences.Get(CartKey, "");
             if (cartD == "") return new ObservableCollection<CartItem>();
-            Console.WriteLine("test");
             return JsonConvert.DeserializeObject<ObservableCollection<CartItem>>(cartD);
         }
         public void PostCarts(ObservableCollection<CartItem> carts)
@@ -28,14 +27,16 @@ namespace eShopOnContainers.Core.Services.Cart
         }
         public void AddToCart(Product product)
         {
-            var carts = GetCarts();
+            var carts = GetCartItems();
             if (carts.Any(x => x.ProductID == product.Id)) return;
-            carts.Add(new CartItem() { CartItemID = carts[carts.Count - 1].CartItemID + 1, Price = product.Cost, ProductID = product.Id, ProductName = product.Name });
+            int id = 0;
+            if(carts.Any()) id = carts[carts.Count - 1].CartItemID + 1;
+            carts.Add(new CartItem() { CartItemID = id, Price = product.Cost, ProductID = product.Id, ProductName = product.Name });
             PostCarts(carts);
         }
         public void RemoveFromCart(int CartID)
         {
-            var carts = GetCarts();
+            var carts = GetCartItems();
             carts.Remove(carts.First(x => x.CartItemID == CartID));
             PostCarts(carts);
         }

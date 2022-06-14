@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace eShopOnContainers.Core.Services.PageCategory
 {
-    interface IPageCategoryService
+    interface ICategoryService
     {
         Task<ObservableCollection<Category>> GetCategoriesAsync();
     }

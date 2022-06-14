@@ -6,8 +6,8 @@ namespace eShopOnContainers.Core
     {
         public const string AzureTag = "Azure";
         public const string MockTag = "Mock";
-        public const string DefaultEndpoint = "https://englishhomeapi.azurewebsites.net/api/";
-        public string DefaultEndpointAPI { get; } = "https://englishhomeapi.azurewebsites.net/api/";
+        public const string DefaultEndpoint = "https://codershomeapitest152.azurewebsites.net/api/";
+        public string DefaultEndpointAPI { get; } = "https://codershomeapitest152.azurewebsites.net/api/";
 
         private string _baseIdentityEndpoint;
         private string _baseGatewayShoppingEndpoint;

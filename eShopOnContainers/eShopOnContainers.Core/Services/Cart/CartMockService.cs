@@ -27,7 +27,7 @@ namespace eShopOnContainers.Core.Services.Cart
             cartItems.Clear();
         }
 
-        public ObservableCollection<CartItem> GetCarts()
+        public ObservableCollection<CartItem> GetCartItems()
         {
             return cartItems;
         }

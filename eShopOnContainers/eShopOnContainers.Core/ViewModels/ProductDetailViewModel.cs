@@ -1,4 +1,7 @@
-﻿using eShopOnContainers.Core.Models.Product;
+﻿using eShopOnContainers.Core.Extensions;
+using eShopOnContainers.Core.Models.Product;
+using eShopOnContainers.Core.Services.Cart;
+using eShopOnContainers.Core.Services.Products;
 using eShopOnContainers.Core.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -12,7 +15,7 @@ namespace eShopOnContainers.Core.ViewModels
     public class ProductDetailViewModel: ViewModelBase
     {
 
-        private Product _product = new Product() { Id = 0, Name = "WordPres Temalı Yazılımcı Kupası", Cost = 42.95, ImageURL = "https://i0.wp.com/www.codershome.net/wp-content/uploads/2022/03/wordpress1-min.jpg?fit=1600%2C1200;ssl=1", CategoryName = "Kupa", CategoryID = 1 };
+        private Product _product = new Product();
         public Product Product
         {
             get => _product;
@@ -22,9 +25,18 @@ namespace eShopOnContainers.Core.ViewModels
                 RaisePropertyChanged(() => Product);
             }
         }
-        public override Task InitializeAsync(IDictionary<string, string> query)
+        private IProductsService _productsService;
+        private ICartService _cartService;
+        public ProductDetailViewModel()
         {
-            return base.InitializeAsync(query);
+            _cartService = DependencyService.Get<ICartService>();
+            _productsService = DependencyService.Get<IProductsService>();
+        }
+
+        public async override Task InitializeAsync(IDictionary<string, string> query)
+        {
+            int id = query.GetValueAsInt("Product").Value;
+            Product = await _productsService.GetProductWithIDAsync(id);
         }
         public ICommand NavigateLogin => new Command(async () =>
         {
@@ -39,7 +51,7 @@ namespace eShopOnContainers.Core.ViewModels
         public ICommand AddToCartCommand => new Command(async (item) => await AddToCart());
         private async Task AddToCart()
         {
-            //_cartService.AddToCart(Product);
+            _cartService.AddToCart(Product);
         }
     }
 }

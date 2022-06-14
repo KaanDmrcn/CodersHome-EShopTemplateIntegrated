@@ -10,7 +10,7 @@ namespace eShopOnContainers.Core.Services.Cart
 {
     public interface ICartService
     {
-        ObservableCollection<CartItem> GetCarts();
+        ObservableCollection<CartItem> GetCartItems();
         void PostCarts(ObservableCollection<CartItem> carts);
 
         void AddToCart(Product product);

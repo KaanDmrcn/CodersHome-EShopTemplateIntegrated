@@ -1,4 +1,5 @@
 ﻿using eShopOnContainers.Core.Models.PageCategory;
+using eShopOnContainers.Core.Services.PageCategory;
 using eShopOnContainers.Core.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,7 @@ namespace eShopOnContainers.Core.ViewModels
 {
     public class CategoriesViewModel:ViewModelBase
     {
-        private ObservableCollection<Category> _categories = new ObservableCollection<Category>()
-        {
-            new Category(){ Name = "Kupa", Id = 1},
-            new Category(){ Name = "Rozet", Id = 2},
-            new Category(){ Name = "Defter", Id = 3}
-        };
+        private ObservableCollection<Category> _categories = new ObservableCollection<Category>();
         public ObservableCollection<Category> Categories
         {
             get => _categories;
@@ -27,16 +23,21 @@ namespace eShopOnContainers.Core.ViewModels
                 RaisePropertyChanged(() => Categories);
             }
         }
-        public override Task InitializeAsync(IDictionary<string, string> query)
+        private ICategoryService _service;
+        public CategoriesViewModel()
         {
-            return base.InitializeAsync(query);
+            _service = DependencyService.Get<ICategoryService>();
+        }
+
+
+        public override async Task InitializeAsync(IDictionary<string, string> query)
+        {
+            Categories = await _service.GetCategoriesAsync();
         }
 
         public ICommand NavigateProductsCommand => new Command<Category>(async (item) =>
         {
-            IsBusy = true;
             await NavigationService.NavigateToAsync("Products", new Dictionary<string, string> { { "CategoryID", item.Id.ToString() } });
-            IsBusy = false;
         });
 
         public ICommand NavigateLogin => new Command<string>(async (string query) =>

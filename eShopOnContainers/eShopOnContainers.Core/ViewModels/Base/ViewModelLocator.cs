@@ -51,16 +51,16 @@ namespace eShopOnContainers.Core.ViewModels.Base
             Xamarin.Forms.DependencyService.RegisterSingleton<ICartService>(new CartService());
 
             Xamarin.Forms.DependencyService.RegisterSingleton<IProductsService>(new ProductMockService());
-            Xamarin.Forms.DependencyService.RegisterSingleton<IPageCategoryService>(new PageCategoryMockService());
+            Xamarin.Forms.DependencyService.RegisterSingleton<ICategoryService>(new CategoryMockService());
 
 
             // View models - by default, TinyIoC will register concrete classes as multi-instance.
 
-            //Xamarin.Forms.DependencyService.Register<PageProductViewModel>();
-            //Xamarin.Forms.DependencyService.Register<PageProductDetailViewModel>();
-            //Xamarin.Forms.DependencyService.Register<PageCategoryViewModel>();
-            //Xamarin.Forms.DependencyService.Register<PageCartViewModel>();
-            //Xamarin.Forms.DependencyService.Register<PageMainViewModel>();
+            Xamarin.Forms.DependencyService.Register<ProductsViewModel>();
+            Xamarin.Forms.DependencyService.Register<ProductDetailViewModel>();
+            Xamarin.Forms.DependencyService.Register<CategoriesViewModel>();
+            Xamarin.Forms.DependencyService.Register<CartViewModel>();
+            Xamarin.Forms.DependencyService.Register<MainPageViewModel>();
         }
 
         public static void UpdateDependencies(bool useMockServices)
@@ -70,7 +70,7 @@ namespace eShopOnContainers.Core.ViewModels.Base
             {
 
                 Xamarin.Forms.DependencyService.RegisterSingleton<IProductsService>(new ProductMockService());
-                Xamarin.Forms.DependencyService.RegisterSingleton<IPageCategoryService>(new PageCategoryMockService());
+                Xamarin.Forms.DependencyService.RegisterSingleton<ICategoryService>(new CategoryMockService());
 
                 UseMockService = true;
             }
@@ -80,7 +80,7 @@ namespace eShopOnContainers.Core.ViewModels.Base
                 var fixUriService = Xamarin.Forms.DependencyService.Get<IFixUriService> ();
 
                 Xamarin.Forms.DependencyService.RegisterSingleton<IProductsService>(new ProductService(requestProvider, fixUriService));
-                Xamarin.Forms.DependencyService.RegisterSingleton<IPageCategoryService>(new CategoryService(requestProvider, fixUriService));
+                Xamarin.Forms.DependencyService.RegisterSingleton<ICategoryService>(new CategoryService(requestProvider, fixUriService));
                 Xamarin.Forms.DependencyService.RegisterSingleton<ICartService>(new CartService());
 
                 UseMockService = false;

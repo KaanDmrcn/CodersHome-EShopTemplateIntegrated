@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace eShopOnContainers.Core.Services.PageCategory
 {
-    class CategoryService:IPageCategoryService
+    class CategoryService:ICategoryService
     {
         private readonly IRequestProvider _requestProvider;
         private readonly IFixUriService _fixUriService;

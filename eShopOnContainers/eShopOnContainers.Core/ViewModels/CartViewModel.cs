@@ -1,5 +1,6 @@
 ﻿using eShopOnContainers.Core.Models;
 using eShopOnContainers.Core.Models.Product;
+using eShopOnContainers.Core.Services.Cart;
 using eShopOnContainers.Core.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,32 @@ namespace eShopOnContainers.Core.ViewModels
     public class CartViewModel:ViewModelBase
     {
 
-        public ObservableCollection<CartItem> Cart { get; set; } = new ObservableCollection<CartItem>()
+        public ObservableCollection<CartItem> _cart { get; set; } = new ObservableCollection<CartItem>();
+        public ObservableCollection<CartItem> Cart
         {
-            new CartItem() {CartItemID = 1, ProductID = 1, Price= 42.95, ProductName = "Android Studio Temalı Kupa"}
-        };
+            get => _cart;
+            set
+            {
+                _cart = value;
+                RaisePropertyChanged(() => Cart);
+            }
+        }
+
+        private ICartService _service;
+        public CartViewModel()
+        {
+            _service = DependencyService.Get<ICartService>();
+            MultipleInitialization = true;
+        }
+
         public override Task InitializeAsync(IDictionary<string, string> query)
         {
+            Cart =  _service.GetCartItems();
+            
             return base.InitializeAsync(query);
         }
+
+
 
         public ICommand NavigateLogin => new Command(async () =>
         {
@@ -32,9 +51,14 @@ namespace eShopOnContainers.Core.ViewModels
         {
             await NavigationService.NavigateToAsync("ProductDetail", new Dictionary<string, string> { { "Product", item.Id.ToString() } });
         });
-        public ICommand ClearCart => new Command(async () =>
+        public ICommand ClearCart => new Command(() =>
         {
-            //await NavigationService.NavigateToAsync("ProductDetail", new Dictionary<string, string> { { "Product", item.Id.ToString() } });
+            _service.ClearAll();
+        });
+        public ICommand RemoveFromCart => new Command<int>((id) =>
+        {
+            _service.RemoveFromCart(id);
+            Cart = _service.GetCartItems();
         });
     }
 }
