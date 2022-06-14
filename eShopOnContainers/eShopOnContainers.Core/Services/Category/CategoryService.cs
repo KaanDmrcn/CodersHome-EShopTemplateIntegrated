@@ -23,7 +23,9 @@ namespace eShopOnContainers.Core.Services.PageCategory
 
         public async Task<ObservableCollection<Category>> GetCategoriesAsync()
         {
+            // ürünler linki eshopta bulunan uri helper ile oluştu
             string uri = UriHelper.CombineUri(GlobalSetting.Instance.DefaultEndpointAPI, ApiUrlBase);
+            // eshopta bulunan getasync fonksiyonu ile http get isteği atabildik
             IEnumerable<Category> items = await _requestProvider.GetAsync<IEnumerable<Category>>(uri);
             return items?.ToObservableCollection();
         }

@@ -29,14 +29,11 @@ namespace eShopOnContainers.Core.Services.Products
             _requestProvider = requestProvider;
         }
 
-        public async Task<ObservableCollection<Product>> GetProductsAsync(int CategoryID, string searchQuery)
+        public async Task<ObservableCollection<Product>> GetProductsAsync()
         {
 
             var uri = UriHelper.CombineUri(GlobalSetting.Instance.DefaultEndpointAPI, ApiUrlBase);
             IEnumerable<Product> items = await _requestProvider.GetAsync<IEnumerable<Product>>(uri);
-            items = items.Where(x => x.Name.ToLower().Contains(searchQuery.ToLower()));
-            if (CategoryID > 0)
-                items = items.Where(product => product.CategoryID == CategoryID);
             if (items != null)
                 return items?.ToObservableCollection();
             else

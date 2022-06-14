@@ -35,7 +35,7 @@ namespace eShopOnContainers.Core.ViewModels
         }
         public async override Task InitializeAsync(IDictionary<string, string> query)
         {
-            Products = await _productsService.GetProductsAsync(-1,"");
+            Products = await _productsService.GetProductsAsync();
         }
 
 

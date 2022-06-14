@@ -21,7 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\old\" />
     <Folder Include="Models\Permissions\" />
     <Folder Include="Fonts\">
     </Folder>

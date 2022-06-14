@@ -20,29 +20,33 @@ namespace eShopOnContainers.Core.Services.Cart
             if (cartD == "") return new ObservableCollection<CartItem>();
             return JsonConvert.DeserializeObject<ObservableCollection<CartItem>>(cartD);
         }
-        public void PostCarts(ObservableCollection<CartItem> carts)
+        public void SaveCarts(ObservableCollection<CartItem> carts)
         {
-
+            // Telefona kaydeder
             Preferences.Set(CartKey, JsonConvert.SerializeObject(carts));
         }
         public void AddToCart(Product product)
         {
+            // telefondan çekilir sepet lokalden
             var carts = GetCartItems();
             if (carts.Any(x => x.ProductID == product.Id)) return;
             int id = 0;
+            // sepetteki  son ürünün idsinden 1 fazla olacak eklenen ürün
             if(carts.Any()) id = carts[carts.Count - 1].CartItemID + 1;
+            // listeye eklenir
             carts.Add(new CartItem() { CartItemID = id, Price = product.Cost, ProductID = product.Id, ProductName = product.Name });
-            PostCarts(carts);
+            // telefona kaydedilir bu
+            SaveCarts(carts);
         }
         public void RemoveFromCart(int CartID)
         {
             var carts = GetCartItems();
             carts.Remove(carts.First(x => x.CartItemID == CartID));
-            PostCarts(carts);
+            SaveCarts(carts);
         }
         public void ClearAll()
         {
-            PostCarts(new ObservableCollection<CartItem>());
+            SaveCarts(new ObservableCollection<CartItem>());
         }
     }
 }

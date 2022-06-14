@@ -19,7 +19,7 @@ namespace eShopOnContainers.Core.Services.Products
             new Product() { Id = 5, Name = "Don't Disturb Karton Kapaklı Yazılımcı Siyah Defter", Cost = 54.95, ImageURL = "https://i0.wp.com/www.codershome.net/wp-content/uploads/2021/09/dont-disturb-min.jpg?fit=1200%2C1200;ssl=1", CategoryName = "Defter", CategoryID = 3 },
             new Product() { Id = 6, Name = "Anti Coding Coding Club Yazılımcı Siyah Defter", Cost = 54.95, ImageURL = "https://i0.wp.com/www.codershome.net/wp-content/uploads/2021/09/anti-coding-min.jpg?fit=1200%2C1200;ssl=1", CategoryName = "Defter", CategoryID = 3 }
         };
-        public async Task<ObservableCollection<Product>> GetProductsAsync(int categoryID, string query)
+        public async Task<ObservableCollection<Product>> GetProductsAsync()
         {
             await Task.Delay(10);
             return MockProducts;
