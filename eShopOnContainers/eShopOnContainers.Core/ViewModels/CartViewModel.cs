@@ -23,9 +23,14 @@ namespace eShopOnContainers.Core.ViewModels
             return base.InitializeAsync(query);
         }
 
-        public ICommand NavigateProduct => new Command<Product>(async (Product item) =>
+        public ICommand NavigateLogin => new Command(async () =>
         {
-            //await NavigationService.NavigateToAsync("ProductDetail", new Dictionary<string, string> { { "Product", item.Id.ToString() } });
+            await NavigationService.NavigateToAsync("Login");
+        });
+
+        public ICommand NavigateProductDetail => new Command<Product>(async (item) =>
+        {
+            await NavigationService.NavigateToAsync("ProductDetail", new Dictionary<string, string> { { "Product", item.Id.ToString() } });
         });
         public ICommand ClearCart => new Command(async () =>
         {

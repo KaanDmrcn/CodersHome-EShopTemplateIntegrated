@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace eShopOnContainers.Core.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ProductDetailPage : ContentPageBase
+    public partial class LoginPage : ContentPageBase
     {
-        public ProductDetailPage()
+        public LoginPage()
         {
             InitializeComponent();
         }

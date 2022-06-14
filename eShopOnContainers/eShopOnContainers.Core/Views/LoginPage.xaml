@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase  xmlns:views="clr-namespace:eShopOnContainers.Core.Views" xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="eShopOnContainers.Core.Views.LoginPage">
+	<ContentPage.Content>
+		<ScrollView>
+			<StackLayout>
+				<Grid>
+
+					<Image Source="hesabim"></Image>
+
+
+
+
+
+				</Grid>
+				<Grid>
+					<Label Grid.Row="3" Grid.Column="0" Text="sad" TextColor="White"></Label>
+
+				</Grid>
+
+				<Grid>
+					<Label Text="Giriş Yap" TextColor="Black" Margin="10,0,0,0" FontSize="20"></Label>
+				</Grid>
+
+
+				<Grid>
+					<Image Source="giris" />
+
+
+					<Entry
+                        Margin="30,50,25,219"
+                            HeightRequest="40"
+                        FontSize="14"
+                           Keyboard="Email"  
+                           TextColor="Black"/>
+					<Entry
+                        Margin="30,120,25,146"
+                            HeightRequest="40"   
+                           Keyboard="Email"  
+                           TextColor="Black"
+                        FontSize="14"
+                        />
+
+
+					<RadioButton IsChecked="False" BackgroundColor="White" Margin="22,160,290,120" FontSize="12" FontAttributes="Bold" Content="Beni hatırla"></RadioButton>
+
+					<Button
+           Text="Giriş Yap" 
+           TextColor="White" 
+           BackgroundColor="#FF295564"
+           HorizontalOptions="Start"
+           VerticalOptions="Start"
+                    Margin="28,200,0,0"
+               FontAttributes="Bold"     
+           FontSize="12"/>
+
+					<Label 
+           Text="Parolanızı mı unuttunuz?" 
+           HorizontalOptions="FillAndExpand"
+           VerticalOptions="FillAndExpand"
+           HorizontalTextAlignment="Start"
+           VerticalTextAlignment="Start"
+           TextColor="Black" 
+                   Margin="20,260,0,0"
+                           
+           FontSize="12"/>
+
+				</Grid>
+
+				<Grid>
+					<Label Grid.Row="1" Grid.Column="0" Text="sad" TextColor="White"></Label>
+
+				</Grid>
+
+				<Label Text="Üye Ol" TextColor="Black" Margin="10,0,0,0" FontSize="20"></Label>
+
+
+
+				<Grid>
+					<Image Source="uyeol" />
+
+
+					<Entry
+                        Margin="30,45,25,312"
+                            HeightRequest="40"
+                        FontSize="14"
+                           Keyboard="Email"  
+                           TextColor="Black"/>
+					<Entry
+                        Margin="30,120,25,240"
+                            HeightRequest="40"   
+                           Keyboard="Email"  
+                           TextColor="Black"
+                        FontSize="14"
+                        />
+
+					<Button
+           Text="Üye Ol" 
+           TextColor="White" 
+           BackgroundColor="#FF295564"
+           HorizontalOptions="Start"
+           VerticalOptions="Start"
+                    Margin="25,328,0,0"
+                FontAttributes="Bold"    
+           FontSize="12"/>
+
+
+				</Grid>
+
+
+				<Grid>
+					<Label Grid.Row="0" Grid.Column="0" Text="sad" TextColor="White"></Label>
+					<Label Grid.Row="1" Grid.ColumnSpan="3"
+                BackgroundColor="#082629"
+                Text="Bizi Takip Etmeyi Unutmayın!"   
+                       FontAttributes="Bold"
+                       TextColor="White"
+                HorizontalTextAlignment="Start"
+                VerticalTextAlignment="Center" 
+                       Padding="15,0,0,0"
+                Margin="0,0,0,0"/>
+
+
+					<Image Grid.Row="1" Grid.Column="1"
+           Source="https://www.codershome.net/wp-content/uploads/2021/06/instagram_icon.png"  
+                      HorizontalOptions="End"
+                VerticalOptions="Center"
+                       Margin="0,0,0,0"/>
+
+					<Image Grid.Row="1" Grid.Column="2"
+           Source="https://www.codershome.net/wp-content/uploads/2021/06/facebook_icon.png"  
+                      HorizontalOptions="Start"
+                VerticalOptions="Center"
+                       Margin="0,0,0,0"/>
+
+					<Image Grid.Row="1" Grid.Column="2"
+           Source="https://www.codershome.net/wp-content/uploads/2021/06/linkedin_con.png"  
+                      HorizontalOptions="Center"
+                VerticalOptions="Center"
+                       Margin="0,0,0,0"/>
+				</Grid>
+
+			</StackLayout>
+		</ScrollView>
+	</ContentPage.Content>
+</views:ContentPageBase>

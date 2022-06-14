@@ -4,6 +4,8 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace eShopOnContainers.Core.ViewModels
 {
@@ -23,6 +25,21 @@ namespace eShopOnContainers.Core.ViewModels
         public override Task InitializeAsync(IDictionary<string, string> query)
         {
             return base.InitializeAsync(query);
+        }
+        public ICommand NavigateLogin => new Command(async () =>
+        {
+            await NavigationService.NavigateToAsync("Login");
+        });
+
+        public ICommand NavigateCart => new Command(async () =>
+        {
+            await NavigationService.NavigateToAsync("Cart");
+        });
+
+        public ICommand AddToCartCommand => new Command(async (item) => await AddToCart());
+        private async Task AddToCart()
+        {
+            //_cartService.AddToCart(Product);
         }
     }
 }

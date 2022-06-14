@@ -22,6 +22,7 @@ namespace eShopOnContainers.Core
             Routing.RegisterRoute("Cart", typeof(CartPage)); 
             Routing.RegisterRoute("Products", typeof(ProductsPage));
             Routing.RegisterRoute("ProductDetail", typeof(ProductDetailPage));
+            Routing.RegisterRoute("Login", typeof(LoginPage));
         }
 
 
