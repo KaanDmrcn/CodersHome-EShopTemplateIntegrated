@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:ContentPageBase
+	xmlns:views="clr-namespace:eShopOnContainers.Core.Views"
+	xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:eShopOnContainers.Core.ViewModels" xmlns:xtc="http://xamarin.com/schemas/2020/toolkit" xmlns:product="clr-namespace:eShopOnContainers.Core.Models.Product"
+	x:Class="eShopOnContainers.Core.Views.ProductsPage">
+
+	<ContentPage.BindingContext>
+		<vm:ProductsViewModel/>
+	</ContentPage.BindingContext>
+
+	<ContentPage.Resources>
+		<DataTemplate x:Key="playerTemplate" x:DataType="product:Product" >
+			<ContentView>
+				<StackLayout>
+					<Image
+                Source="{Binding ImageURL}"
+                HorizontalOptions="Center"
+                VerticalOptions="Start" 
+                HeightRequest="120"
+                Margin="10,0,0,0" />
+
+					<Label
+                Text="{Binding CategoryName}" 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Start"
+                VerticalTextAlignment="Start"
+                TextColor="Black" 
+                Margin="10,0,0,0"
+                FontAttributes="Bold"
+                FontSize="10"/>
+
+					<Label
+                Text="{Binding Name}" 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Start"
+                VerticalTextAlignment="Start"
+                TextColor="Black" 
+                Margin="10,0,0,0"
+                FontSize="10"/>
+
+					<Label
+                Text="{Binding Cost}" 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                HorizontalTextAlignment="Start"
+                VerticalTextAlignment="Start"
+                TextColor="Black" 
+                Margin="10,0,0,0"
+                FontSize="10"/>
+
+					<Button
+                Text="Sepete Ekle" 
+                TextColor="White" 
+                BackgroundColor="#FF295564"
+                HorizontalOptions="Start"
+                VerticalOptions="End"
+                Margin="10,0,0,10"
+                HeightRequest="30"
+                FontSize="8"/>
+
+				</StackLayout>
+
+
+			</ContentView>
+		</DataTemplate>
+	</ContentPage.Resources>
+	<ContentPage.ToolbarItems>
+		<ToolbarItem IconImageSource="user.png" Order="Primary" Priority="0" 
+                        Command="{Binding NavigateLogin}" />
+		<ToolbarItem IconImageSource="cart.png" Order="Primary" Priority="1" 
+                        Command="{Binding NavigateCart}" />
+	</ContentPage.ToolbarItems>
+	<ContentPage.Content>
+		<StackLayout>
+			<StackLayout Orientation="Horizontal">
+				<SearchBar x:Name="searchBar"   SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}" SearchCommand="{Binding Search}">
+					<SearchBar.Behaviors>
+						<xtc:EventToCommandBehavior
+            EventName="TextChanged"
+                            CommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+            Command="{Binding Search}"
+            />
+					</SearchBar.Behaviors>
+				</SearchBar>
+			</StackLayout>
+
+
+			<CollectionView x:Name="collectionview"
+			ItemsSource="{Binding Products}"
+             ItemTemplate="{StaticResource playerTemplate}" >
+
+
+				<CollectionView.ItemsLayout>
+					<GridItemsLayout Orientation="Vertical" Span="3"/>
+				</CollectionView.ItemsLayout>
+
+			</CollectionView>
+		</StackLayout>
+    </ContentPage.Content>
+</views:ContentPageBase>

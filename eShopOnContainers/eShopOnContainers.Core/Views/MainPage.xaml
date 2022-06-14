@@ -18,17 +18,19 @@
 	</ContentPage.ToolbarItems>
 
 	<ContentPage.Resources>
-		<DataTemplate x:Key="playerTemplate" x:DataType="product:Product" >
+		<DataTemplate x:Key="playerTemplate" x:DataType="product:Product">
 			<ContentView>
 				<StackLayout>
-				<Image
+					<StackLayout>
+
+						<Image
                 Source="{Binding ImageURL}"
                 HorizontalOptions="Center"
                 VerticalOptions="Start" 
                 HeightRequest="120"
                 Margin="10,0,0,0" />
 
-				<Label
+						<Label
                 Text="{Binding CategoryName}" 
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
@@ -39,7 +41,7 @@
                 FontAttributes="Bold"
                 FontSize="10"/>
 
-				<Label
+						<Label
                 Text="{Binding Name}" 
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
@@ -48,8 +50,8 @@
                 TextColor="Black" 
                 Margin="10,0,0,0"
                 FontSize="10"/>
-					
-				<Label
+
+						<Label
                 Text="{Binding Cost}" 
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
@@ -58,6 +60,7 @@
                 TextColor="Black" 
                 Margin="10,0,0,0"
                 FontSize="10"/>
+					</StackLayout>
 
 				<Button
                 Text="Sepete Ekle" 
@@ -112,7 +115,7 @@
            TextColor="White" 
            FontSize="12"/>
 
-				<Button Clicked="Button_Clicked" Grid.Row="0" Grid.ColumnSpan="3"
+				<Button Command="{Binding NavigateProducts}" Grid.Row="0" Grid.ColumnSpan="3"
            Text="Alışverişe Başla" 
            TextColor="White" 
            BackgroundColor="#FF295564"
@@ -148,6 +151,7 @@
                 Margin="0,0,0,50"
                 FontSize="30"/>
 			<CollectionView x:Name="collectionview"
+							
 			ItemsSource="{Binding Products}"
              ItemTemplate="{StaticResource playerTemplate}" >
 

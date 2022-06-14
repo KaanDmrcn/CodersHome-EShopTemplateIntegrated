@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace eShopOnContainers.Core.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CartPage : ContentPageBase
+    public partial class ProductsPage : ContentPageBase
     {
-        public CartPage()
+        public ProductsPage()
         {
             InitializeComponent();
         }

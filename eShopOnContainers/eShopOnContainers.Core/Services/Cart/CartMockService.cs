@@ -12,20 +12,14 @@ namespace eShopOnContainers.Core.Services.Cart
     {
 
         ObservableCollection<CartItem> cartItems = new ObservableCollection<CartItem>() {
-            new CartItem()
-            {
-                CartItemID = 0, Price = 250, ProductID = 100, ProductName = "Yastık", ProductImage = "https://cdn-eh.akinon.net/products/2021/10/05/189290/a3dbd199-bf0d-4f02-9921-d552b60eca6c_size768x575_cropCenter.jpg",
-            },
-            new CartItem()
-            {
-                CartItemID = 1, Price = 350, ProductID = 101, ProductName = "Kırlent", ProductImage = "https://cdn-eh.akinon.net/products/2021/10/05/189290/a3dbd199-bf0d-4f02-9921-d552b60eca6c_size768x575_cropCenter.jpg",
-            }
+            new CartItem() {CartItemID = 1, ProductID = 1, Price= 42.95, ProductName = "Android Studio Temalı Kupa"},
+            new CartItem() {CartItemID = 1, ProductID = 1, Price= 42.95, ProductName = "Android Studio Temalı Kupa"}
         };
 
 
         public void AddToCart(Product product)
         {
-            cartItems.Add(new CartItem() { CartItemID = cartItems[cartItems.Count - 1].CartItemID + 1, Price = product.Cost, ProductImage = product.ImageURL, ProductName = product.Name });
+            cartItems.Add(new CartItem() { CartItemID = cartItems[cartItems.Count - 1].CartItemID + 1, Price = product.Cost, ProductName = product.Name });
         }
 
         public void ClearAll()
