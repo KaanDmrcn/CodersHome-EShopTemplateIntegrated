@@ -17,6 +17,7 @@
                         Command="{Binding NavigateCart}" />
 	</ContentPage.ToolbarItems>
 
+	
 	<ContentPage.Resources>
 		<DataTemplate x:Key="playerTemplate" x:DataType="product:Product">
 			<ContentView>

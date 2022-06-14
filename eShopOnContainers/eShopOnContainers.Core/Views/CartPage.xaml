@@ -56,6 +56,7 @@
 				<Grid>
 
 					<Button Grid.Row="0" Grid.Column="0"
+							Command="{Binding ClearCart}"
                 Text="Sepeti Temizle" 
                 TextColor="White" 
                 BackgroundColor="#FF295564"

@@ -54,6 +54,7 @@ namespace eShopOnContainers.Core.ViewModels
         public ICommand ClearCart => new Command(() =>
         {
             _service.ClearAll();
+            Cart = _service.GetCartItems() ?? new ObservableCollection<CartItem>();
         });
         public ICommand RemoveFromCart => new Command<int>((id) =>
         {
