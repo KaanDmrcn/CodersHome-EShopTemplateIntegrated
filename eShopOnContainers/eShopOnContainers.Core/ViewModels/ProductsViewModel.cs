@@ -1,5 +1,6 @@
 ﻿using eShopOnContainers.Core.Extensions;
 using eShopOnContainers.Core.Models.Product;
+using eShopOnContainers.Core.Services.Products;
 using eShopOnContainers.Core.ViewModels.Base;
 using System;
 using System.Collections.Generic;
@@ -28,11 +29,10 @@ namespace eShopOnContainers.Core.ViewModels
         public ProductsViewModel()
         {
             _productsService = DependencyService.Get<IProductsService>();
-
+            this.MultipleInitialization = true;
         }
 
         private ObservableCollection<Product> products = new ObservableCollection<Product>();
-
         public ObservableCollection<Product> Products
         {
             get => products;
@@ -47,7 +47,6 @@ namespace eShopOnContainers.Core.ViewModels
         {
             if (query != null)
             {
-
                 if (query.ContainsKey("CategoryID"))
                     CategoryID = query.GetValueAsInt("CategoryID").Value;
 
