@@ -24,7 +24,12 @@ namespace eShopOnContainers.Core.ViewModels
             new Product() { Id=5, Name = "Anti Coding Coding Club Yazılımcı Siyah Defter", Cost = 54.95, ImageURL= "https://i0.wp.com/www.codershome.net/wp-content/uploads/2021/09/anti-coding-min.jpg?fit=1200%2C1200;ssl=1", CategoryName= "Defter",CategoryID=3}
             };
 
+        private IProductsService _productsService;
+        public ProductsViewModel()
+        {
+            _productsService = DependencyService.Get<IProductsService>();
 
+        }
 
         private ObservableCollection<Product> products = new ObservableCollection<Product>();
 
@@ -40,7 +45,17 @@ namespace eShopOnContainers.Core.ViewModels
 
         public override Task InitializeAsync(IDictionary<string, string> query)
         {
+            if (query != null)
+            {
+
+                if (query.ContainsKey("CategoryID"))
+                    CategoryID = query.GetValueAsInt("CategoryID").Value;
+
+                if (query.ContainsKey("SearchQuery"))
+                    SearchQuery = query["SearchQuery"];
+            }
             Products = AllProducts;
+            Filter();
             return base.InitializeAsync(query);
         }
 
