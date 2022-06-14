@@ -13,13 +13,14 @@
 	<ContentPage.Resources>
 		<DataTemplate x:Key="playerTemplate" x:DataType="product:Product" >
 			<ContentView>
-				<StackLayout>
+				<StackLayout 
+                Margin="10,0,0,0" 
+				Padding="10">
 					<Image
                 Source="{Binding ImageURL}"
                 HorizontalOptions="Center"
                 VerticalOptions="Start" 
-                HeightRequest="120"
-                Margin="10,0,0,0" />
+                HeightRequest="120" />
 
 					<Label
                 Text="{Binding CategoryName}" 
@@ -28,7 +29,6 @@
                 HorizontalTextAlignment="Start"
                 VerticalTextAlignment="Start"
                 TextColor="Black" 
-                Margin="10,0,0,0"
                 FontAttributes="Bold"
                 FontSize="10"/>
 
@@ -38,29 +38,18 @@
                 VerticalOptions="FillAndExpand"
                 HorizontalTextAlignment="Start"
                 VerticalTextAlignment="Start"
-                TextColor="Black" 
-                Margin="10,0,0,0"
+                TextColor="Black"
                 FontSize="10"/>
 
 					<Label
                 Text="{Binding Cost}" 
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
-                HorizontalTextAlignment="Start"
+                HorizontalTextAlignment="Center"
                 VerticalTextAlignment="Start"
                 TextColor="Black" 
-                Margin="10,0,0,0"
+				Padding="10"
                 FontSize="10"/>
-
-					<Button
-                Text="Sepete Ekle" 
-                TextColor="White" 
-                BackgroundColor="#FF295564"
-                HorizontalOptions="Start"
-                VerticalOptions="End"
-                Margin="10,0,0,10"
-                HeightRequest="30"
-                FontSize="8"/>
 
 				</StackLayout>
 
@@ -91,9 +80,7 @@
 
 			<CollectionView x:Name="collectionview"
 			ItemsSource="{Binding Products}"
-             ItemTemplate="{StaticResource playerTemplate}" >
-
-
+             ItemTemplate="{StaticResource playerTemplate}" SelectionChangedCommand="{Binding NavigateProductDetail, Mode=TwoWay}" SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}" SelectionMode="Single" >
 				<CollectionView.ItemsLayout>
 					<GridItemsLayout Orientation="Vertical" Span="3"/>
 				</CollectionView.ItemsLayout>

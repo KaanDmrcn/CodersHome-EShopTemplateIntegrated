@@ -53,5 +53,10 @@ namespace eShopOnContainers.Core.ViewModels
             await NavigationService.NavigateToAsync("Products");
         });
 
+        public ICommand NavigateProductDetail => new Command<Product>(async (item) =>
+        {
+            await NavigationService.NavigateToAsync("ProductDetail", new Dictionary<string, string> { { "Product", item.Id.ToString() } });
+        });
+
     }
 }

@@ -70,5 +70,11 @@ namespace eShopOnContainers.Core.ViewModels
         {
             Products = AllProducts.Where(x => (CategoryID < 0 || CategoryID == x.CategoryID) && x.Name.ToLower().Contains(SearchQuery.ToLower())).ToObservableCollection();
         }
+
+
+        public ICommand NavigateProductDetail => new Command<Product>(async (item) =>
+        {
+            await NavigationService.NavigateToAsync("ProductDetail", new Dictionary<string, string> { { "Product", item.Id.ToString() } });
+        });
     }
 }

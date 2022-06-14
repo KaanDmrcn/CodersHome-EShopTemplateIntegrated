@@ -2,7 +2,7 @@
 <views:ContentPageBase  xmlns:views="clr-namespace:eShopOnContainers.Core.Views" 
 						xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
-						xmlns:vm="clr-namespace:eShopOnContainers.Core.ViewModels" xmlns:product="clr-namespace:eShopOnContainers.Core.Models.Product"
+						xmlns:vm="clr-namespace:eShopOnContainers.Core.ViewModels" xmlns:product="clr-namespace:eShopOnContainers.Core.Models.Product" xmlns:xtc="http://xamarin.com/schemas/2020/toolkit"
 						x:Class="eShopOnContainers.Core.Views.MainPage">
 
 	<ContentPage.BindingContext>
@@ -21,8 +21,8 @@
 		<DataTemplate x:Key="playerTemplate" x:DataType="product:Product">
 			<ContentView>
 				<StackLayout>
-					<StackLayout>
-
+					<StackLayout >
+                    
 						<Image
                 Source="{Binding ImageURL}"
                 HorizontalOptions="Center"
@@ -59,18 +59,10 @@
                 VerticalTextAlignment="Start"
                 TextColor="Black" 
                 Margin="10,0,0,0"
+							Padding="10"
                 FontSize="10"/>
 					</StackLayout>
 
-				<Button
-                Text="Sepete Ekle" 
-                TextColor="White" 
-                BackgroundColor="#FF295564"
-                HorizontalOptions="Start"
-                VerticalOptions="End"
-                Margin="10,0,0,10"
-                HeightRequest="30"
-                FontSize="8"/>
 
 				</StackLayout>
 				
@@ -150,14 +142,13 @@
                 TextColor="Black" 
                 Margin="0,0,0,50"
                 FontSize="30"/>
-			<CollectionView x:Name="collectionview"
+				<CollectionView x:Name="collectionview"
 							
 			ItemsSource="{Binding Products}"
-             ItemTemplate="{StaticResource playerTemplate}" >
-
-
-				<!--span here decides the number of items shows in one line. Now is 3 items one line-->
+             ItemTemplate="{StaticResource playerTemplate}" SelectionChangedCommand="{Binding NavigateProductDetail, Mode=TwoWay}" SelectionChangedCommandParameter="{Binding SelectedItem, Source={RelativeSource Self}}" SelectionMode="Single">
+					<!--span here decides the number of items shows in one line. Now is 3 items one line-->
 				<CollectionView.ItemsLayout>
+					
 					<GridItemsLayout Orientation="Vertical" Span="3"/>
 				</CollectionView.ItemsLayout>
 
