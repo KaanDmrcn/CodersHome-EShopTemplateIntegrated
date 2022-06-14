@@ -79,8 +79,8 @@ namespace eShopOnContainers.Core.ViewModels.Base
                 var requestProvider = Xamarin.Forms.DependencyService.Get<IRequestProvider> ();
                 var fixUriService = Xamarin.Forms.DependencyService.Get<IFixUriService> ();
 
-                Xamarin.Forms.DependencyService.RegisterSingleton<IProductsService>(new ProductService(requestProvider, fixUriService));
-                Xamarin.Forms.DependencyService.RegisterSingleton<ICategoryService>(new CategoryService(requestProvider, fixUriService));
+                Xamarin.Forms.DependencyService.RegisterSingleton<IProductsService>(new ProductService(requestProvider));
+                Xamarin.Forms.DependencyService.RegisterSingleton<ICategoryService>(new CategoryService(requestProvider));
                 Xamarin.Forms.DependencyService.RegisterSingleton<ICartService>(new CartService());
 
                 UseMockService = false;

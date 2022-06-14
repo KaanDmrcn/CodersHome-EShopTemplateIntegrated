@@ -22,13 +22,11 @@ namespace eShopOnContainers.Core.Services.Products
 
 
         private readonly IRequestProvider _requestProvider;
-        private readonly IFixUriService _fixUriService;
 
         private const string ApiUrlBase = "products";
-        public ProductService(IRequestProvider requestProvider, IFixUriService fixUriService)
+        public ProductService(IRequestProvider requestProvider)
         {
             _requestProvider = requestProvider;
-            _fixUriService = fixUriService;
         }
 
         public async Task<ObservableCollection<Product>> GetProductsAsync(int CategoryID, string searchQuery)

@@ -14,13 +14,11 @@ namespace eShopOnContainers.Core.Services.PageCategory
     class CategoryService:ICategoryService
     {
         private readonly IRequestProvider _requestProvider;
-        private readonly IFixUriService _fixUriService;
 
         private const string ApiUrlBase = "categories";
         public CategoryService(IRequestProvider requestProvider, IFixUriService fixUriService)
         {
             _requestProvider = requestProvider;
-            _fixUriService = fixUriService;
         }
 
         public async Task<ObservableCollection<Category>> GetCategoriesAsync()
